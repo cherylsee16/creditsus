@@ -10,23 +10,38 @@ exports.count = async (req, res) => {
         return true;
     }
     
-    function countMoves(floorArr, moves){
+    function countMoves(floorArr){
+        var moves = 0;
+        var pointer = 0;
 
-        // Check if all the floor is clean
-        if (checkFloor(floorArr)){
-            return moves;
-        } else {
-            moves += 1;
-            var tile = floorArr[1];
-            if (tile > 0) {
-                floorArr[1]-=1;
-            } else {
-                floorArr[1]+=1;
+        while (!checkFloor(floorArr)){
+            if (pointer < floorArr.length && !checkFloor(floorArr.slice(pointer+1,floorArr.length))){
+                pointer++;
+                if (floorArr[pointer]>0){
+                    floorArr[pointer]--;
+                    moves += 1;
+                } else {
+                    floorArr[pointer]++;
+                }
+                continue;
             }
-            floorArr.push(floorArr.shift());
+            
 
-            return countMoves(floorArr, moves);
+            else if (pointer > 0 && !checkFloor(floorArr.slice(0, pointer))){
+                pointer--;
+                if (floorArr[pointer]>0){
+                    floorArr[pointer]--;
+                    moves += 1;
+                } else {
+                    floorArr[pointer]++;
+                }
+                continue;
+            }
+            else {
+                return moves;
+            }
         }
+        return moves;
 
     }
 
@@ -34,7 +49,7 @@ exports.count = async (req, res) => {
 
     for (const [testId, test] of Object.entries(tests)) {
         var testArr = test.floor;
-        result[testId] = countMoves(testArr, 0);
+        result[testId] = countMoves(testArr);
     }
 
     return res.status(200).json({answers: result})
