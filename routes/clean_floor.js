@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const contact_tracing_controller = require('../controllers/contact_tracing');
+const clean_floor_controller = require('../controllers/clean_floor');
 
 // ------------------ Contact Tracing ------------------
-router.post('/', contact_tracing_controller.trace);
+router.post('/', clean_floor_controller.count);
 
 module.exports = router;
