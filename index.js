@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 // ------------ Routes ------------ 
 
 // Contact Tracing 
-//app.use('/contact_trace', require('./routes/contact_trace'));
+app.use('/contact_trace', require('./routes/contact_trace'));
 
 // ------------ Port Config ------------
 const port = 5000;
