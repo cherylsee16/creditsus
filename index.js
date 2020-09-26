@@ -33,6 +33,6 @@ app.use('/contact_trace', require('./routes/contact_trace'));
 app.use('/clean_floor', require('./routes/clean_floor'));
 
 // ------------ Port Config ------------
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, console.log(`Server started on port ${port}.`));
