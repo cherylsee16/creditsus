@@ -22,6 +22,10 @@ app.use(function (req, res, next) {
 
 // ------------ Routes ------------ 
 
+app.get('/', function (req, res) {
+    res.send('Server started')
+})
+
 // Contact Tracing 
 app.use('/contact_trace', require('./routes/contact_trace'));
 
