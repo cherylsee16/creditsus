@@ -24,3 +24,8 @@ app.use(function (req, res, next) {
 
 // Contact Tracing 
 //app.use('/contact_trace', require('./routes/contact_trace'));
+
+// ------------ Port Config ------------
+const port = 5000;
+
+app.listen(port, console.log(`Server started on port ${port}.`));
